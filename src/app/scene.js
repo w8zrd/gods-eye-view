@@ -50,6 +50,9 @@ export async function createApplicationScene({
   });
   defer(() => {
     uninstallRenderGovernor(viewer);
+    if (typeof viewer.uninstallContextLossRecovery === 'function') {
+      viewer.uninstallContextLossRecovery();
+    }
     if (!viewer.isDestroyed()) viewer.destroy();
   });
   registerDataCredits(viewer, credits);
