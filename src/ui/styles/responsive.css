@@ -93,6 +93,51 @@
     right: 16px;
   }
 
+  /* Phone: each bottom HUD corner is wider than half the viewport, so the
+     MGRS/latlon readout (left) prints directly over the GSD/ALT readout
+     (right). Stack them as two compact full-width rows above the command
+     dock instead of side-by-side corners. The body prefix outranks the
+     variant rules in command-dock-trays.css, which loads after this file. */
+  body #intel-hud[data-variant] .hud-bottom-left,
+  body #intel-hud[data-variant] .hud-bottom-right {
+    left: 16px;
+    right: 16px;
+  }
+
+  .hud-bottom-left .hud-content,
+  .hud-bottom-right .hud-content {
+    font-size: 11px;
+  }
+
+  body #intel-hud[data-variant] .hud-bottom-left {
+    top: auto;
+    bottom: 118px;
+  }
+
+  body #intel-hud[data-variant] .hud-bottom-right {
+    top: auto;
+    bottom: 170px;
+  }
+
+  .hud-bottom-right .hud-content {
+    text-align: left;
+  }
+
+  /* Phone: the top corner readouts are wider than the screen (long
+     nowrap classification/orbit lines), so they print over each other
+     and off the right edge. Keep each corner in its half of the screen
+     and clip the overflow. */
+  .hud-top-left,
+  .hud-top-right {
+    max-width: calc(50vw - 24px);
+  }
+
+  .hud-top-left .hud-content,
+  .hud-top-right .hud-content {
+    min-width: 0;
+    overflow: hidden;
+  }
+
   .hud-left-edge,
   .hud-right-edge {
     display: none;
